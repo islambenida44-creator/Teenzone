@@ -1,0 +1,2679 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TeenZone — منصة عربية آمنة للمراهقين من 13 إلى 17 سنة للتعلم والبرمجة والإبداع والألعاب والتحديات في بيئة رقمية آمنة.">
+<meta name="keywords" content="TeenZone, تعليم للمراهقين, تعلم البرمجة, منصة للمراهقين, ألعاب تعليمية, تحديات إبداعية, أمان رقمي, الجزائر">
+<meta name="author" content="TeenZone">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TeenZone — تعلّم، أبدع، واكتشف">
+<meta property="og:description" content="منصة رقمية آمنة للمراهقين للتعلم والبرمجة والإبداع والترفيه.">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary">
+<title>TeenZone — تعلّم، أبدع، واكتشف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Primary palette */
+  --primary: #7c3aed;
+  --primary-light: #a78bfa;
+  --primary-dark: #5b21b6;
+  --primary-glow: rgba(124, 58, 237, 0.15);
+
+  /* Accent colors */
+  --accent: #f97316;
+  --accent-light: #fdba74;
+  --teal: #06b6d4;
+  --teal-light: #67e8f9;
+  --rose: #f43f5e;
+  --emerald: #10b981;
+  --amber: #f59e0b;
+
+  /* Light theme */
+  --bg-primary: #faf8ff;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f3f0ff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #faf8ff;
+  --bg-nav: rgba(255, 255, 255, 0.85);
+  --text-primary: #1e1b4b;
+  --text-secondary: #4c4883;
+  --text-tertiary: #7c78b0;
+  --border-color: rgba(124, 58, 237, 0.1);
+  --border-strong: rgba(124, 58, 237, 0.2);
+  --shadow-sm: 0 1px 3px rgba(30, 27, 75, 0.06);
+  --shadow-md: 0 4px 16px rgba(30, 27, 75, 0.08);
+  --shadow-lg: 0 8px 32px rgba(30, 27, 75, 0.1);
+  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.12);
+  --overlay: rgba(30, 27, 75, 0.5);
+  --code-bg: #1e1b4b;
+  --code-text: #e0e7ff;
+  --badge-bg: linear-gradient(135deg, #7c3aed, #a78bfa);
+  --hero-gradient: linear-gradient(160deg, #faf8ff 0%, #ede9fe 40%, #fce7f3 100%);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f0a1e;
+  --bg-secondary: #1a1333;
+  --bg-tertiary: #1e1640;
+  --bg-card: #1a1333;
+  --bg-card-hover: #231a4a;
+  --bg-nav: rgba(15, 10, 30, 0.9);
+  --text-primary: #ede9fe;
+  --text-secondary: #c4b5fd;
+  --text-tertiary: #8b7cc8;
+  --border-color: rgba(167, 139, 250, 0.12);
+  --border-strong: rgba(167, 139, 250, 0.25);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.2);
+  --overlay: rgba(5, 3, 15, 0.7);
+  --code-bg: #0a0718;
+  --code-text: #c4b5fd;
+  --hero-gradient: linear-gradient(160deg, #0f0a1e 0%, #1e1640 40%, #2d1a4e 100%);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  text-wrap: pretty;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover { color: var(--primary-light); }
+
+img { max-width: 100%; display: block; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.4s, border-color 0.4s;
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--text-primary);
+}
+
+.nav-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 900;
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.3);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.nav-links a:hover {
+  color: var(--primary);
+  background: var(--primary-glow);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  transition: all 0.2s;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+.theme-toggle:hover {
+  color: var(--primary);
+  border-color: var(--border-strong);
+  transform: scale(1.05);
+}
+
+.btn-nav-account {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.25);
+}
+.btn-nav-account:hover {
+  background: var(--primary-dark);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+}
+
+/* Mobile menu */
+.mobile-menu-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: flex; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    right: 0;
+    left: 0;
+    background: var(--bg-nav);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 24px;
+    gap: 4px;
+    animation: slideDown 0.3s ease;
+  }
+  .nav-links.open a {
+    padding: 12px 16px;
+    width: 100%;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 60px;
+  background: var(--hero-gradient);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+.hero-content {
+  max-width: 800px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+  animation: fadeInUp 0.6s ease;
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--emerald);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+.hero-title-highlight {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 580px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 16px;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(124, 58, 237, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 16px;
+  border: 1.5px solid var(--border-strong);
+  transition: all 0.25s;
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 56px;
+  animation: fadeInUp 0.6s ease 0.4s both;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.hero-stat-label {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   SECTION BASE
+   ============================================ */
+.section {
+  padding: 100px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: var(--primary-glow);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+
+.section-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ============================================
+   CATEGORIES GRID (Main Cards)
+   ============================================ */
+.categories-section {
+  padding: 80px 24px;
+  background: var(--bg-tertiary);
+  transition: background 0.4s;
+}
+
+.categories-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: var(--card-accent, var(--primary));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-strong);
+}
+
+.category-card:hover::before {
+  transform: scaleX(1);
+}
+
+.category-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.7rem;
+  background: var(--icon-bg, var(--primary-glow));
+  transition: transform 0.3s;
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.category-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.category-desc {
+  font-size: 0.88rem;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+}
+
+/* Card accent colors */
+.category-card[data-cat="learn"] { --card-accent: var(--primary); --icon-bg: rgba(124,58,237,0.1); }
+.category-card[data-cat="code"] { --card-accent: var(--teal); --icon-bg: rgba(6,182,212,0.1); }
+.category-card[data-cat="create"] { --card-accent: var(--accent); --icon-bg: rgba(249,115,22,0.1); }
+.category-card[data-cat="games"] { --card-accent: var(--rose); --icon-bg: rgba(244,63,94,0.1); }
+.category-card[data-cat="challenges"] { --card-accent: var(--amber); --icon-bg: rgba(245,158,11,0.1); }
+
+/* ============================================
+   LEARNING SECTION
+   ============================================ */
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.learn-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.learn-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.learn-card-banner {
+  height: 8px;
+  background: var(--banner-color, var(--primary));
+}
+
+.learn-card-body {
+  padding: 28px;
+}
+
+.learn-card-subject {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--primary-glow);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.learn-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.learn-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.learn-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+}
+
+.learn-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ============================================
+   CODE SECTION
+   ============================================ */
+.code-section {
+  background: var(--bg-tertiary);
+  transition: background 0.4s;
+}
+
+.code-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.code-langs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.code-lang-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.code-lang-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  transform: translateX(-4px);
+}
+
+.code-lang-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.code-lang-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.code-lang-info p {
+  font-size: 0.84rem;
+  color: var(--text-tertiary);
+}
+
+.code-editor {
+  background: var(--code-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.code-editor-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.code-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.code-dot.red { background: #f43f5e; }
+.code-dot.yellow { background: #f59e0b; }
+.code-dot.green { background: #10b981; }
+
+.code-editor-tab {
+  margin-right: auto;
+  margin-left: 16px;
+  padding: 4px 14px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  color: #a78bfa;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.code-editor-body {
+  padding: 24px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--code-text);
+  direction: ltr;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.code-editor-body .tag { color: #f43f5e; }
+.code-editor-body .attr { color: #f59e0b; }
+.code-editor-body .val { color: #10b981; }
+.code-editor-body .comment { color: #6b7280; font-style: italic; }
+.code-editor-body .keyword { color: #a78bfa; }
+.code-editor-body .string { color: #67e8f9; }
+
+@media (max-width: 800px) {
+  .code-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   CREATIVITY SECTION
+   ============================================ */
+.create-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.create-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.create-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.create-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem;
+  transition: transform 0.3s;
+}
+
+.create-card:hover .create-icon-wrap {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.create-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.create-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.create-card .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.create-card .btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-glow);
+}
+
+/* ============================================
+   GAMES SECTION
+   ============================================ */
+.games-section {
+  background: var(--bg-tertiary);
+  transition: background 0.4s;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.game-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.game-card-visual {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  position: relative;
+}
+
+.game-card-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.06;
+}
+
+.game-card-body {
+  padding: 24px;
+}
+
+.game-card-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.game-card-body p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.game-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.game-tag {
+  padding: 4px 12px;
+  background: var(--primary-glow);
+  border-radius: 8px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ============================================
+   CHALLENGES SECTION
+   ============================================ */
+.challenges-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.challenge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.challenge-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.challenge-item:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.challenge-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.challenge-info {
+  flex: 1;
+}
+
+.challenge-info h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.challenge-info p {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+}
+
+.challenge-points {
+  padding: 6px 14px;
+  background: var(--primary-glow);
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/* Badges Panel */
+.badges-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.badges-panel h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.badges-panel > p {
+  font-size: 0.88rem;
+  color: var(--text-tertiary);
+  margin-bottom: 24px;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.badge-item {
+  text-align: center;
+  padding: 16px 8px;
+  border-radius: 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  transition: all 0.25s;
+}
+
+.badge-item:hover {
+  transform: scale(1.04);
+  box-shadow: var(--shadow-md);
+}
+
+.badge-item.locked {
+  opacity: 0.45;
+  filter: grayscale(0.5);
+}
+
+.badge-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.badge-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 800px) {
+  .challenges-layout {
+    grid-template-columns: 1fr;
+  }
+  .badges-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   PROJECTS SECTION
+   ============================================ */
+.projects-section {
+  background: var(--bg-tertiary);
+  transition: background 0.4s;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-preview {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+}
+
+.project-body {
+  padding: 24px;
+}
+
+.project-body h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.project-body p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.project-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.project-author span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.project-likes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.84rem;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.project-likes:hover {
+  background: rgba(244, 63, 94, 0.08);
+  color: var(--rose);
+}
+
+/* ============================================
+   SAFETY SECTION
+   ============================================ */
+.safety-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.safety-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  gap: 16px;
+  transition: all 0.25s;
+}
+
+.safety-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.safety-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(16, 185, 129, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.safety-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.safety-card p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Report button */
+.report-section {
+  text-align: center;
+  margin-top: 48px;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+}
+
+.report-section h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.report-section p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.btn-report {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--rose);
+  color: #fff;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: all 0.25s;
+  box-shadow: 0 4px 16px rgba(244, 63, 94, 0.25);
+}
+
+.btn-report:hover {
+  background: #e11d48;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   ACCOUNT MODAL
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: modalSlide 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+@keyframes modalSlide {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 0;
+}
+
+.modal-header h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.modal-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font-size: 1.3rem;
+  transition: all 0.2s;
+  background: var(--bg-tertiary);
+}
+
+.modal-close:hover {
+  color: var(--rose);
+  background: rgba(244, 63, 94, 0.08);
+}
+
+.modal-body {
+  padding: 28px;
+}
+
+/* Auth form */
+.auth-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  background: var(--bg-tertiary);
+  border-radius: 14px;
+  padding: 4px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  border-radius: 11px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.auth-tab.active {
+  background: var(--bg-card);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--bg-tertiary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: all 0.2s;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.form-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.form-hint {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.25s;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+}
+
+.btn-submit:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* Profile view */
+.profile-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 2rem;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+}
+
+.profile-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.profile-joined {
+  font-size: 0.84rem;
+  color: var(--text-tertiary);
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.profile-stat {
+  text-align: center;
+  padding: 16px 8px;
+  background: var(--bg-tertiary);
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+}
+
+.profile-stat-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.profile-stat-label {
+  font-size: 0.76rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.profile-badges h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.profile-badges-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--bg-tertiary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.profile-badge-icon {
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   PRIVACY MODAL
+   ============================================ */
+.privacy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.privacy-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--bg-tertiary);
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+}
+
+.privacy-item-info {
+  flex: 1;
+}
+
+.privacy-item-info h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.privacy-item-info p {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.toggle-switch {
+  width: 48px;
+  height: 28px;
+  background: var(--border-strong);
+  border-radius: 14px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+
+.toggle-switch.active {
+  background: var(--primary);
+}
+
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.toggle-switch.active::after {
+  transform: translateX(-20px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding: 48px 24px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  transition: background 0.4s, border-color 0.4s;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-brand p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-top: 12px;
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col ul a {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.footer-col ul a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 32px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 800px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .hero-stats {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   NOTIFICATION TOAST
+   ============================================ */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-lg);
+  z-index: 3000;
+  transition: transform 0.4s ease;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-icon {
+  font-size: 1.2rem;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"TeenZone",
+  "url":"https://example.com/",
+  "description":"منصة عربية آمنة للمراهقين 13–17 سنة للتعلم والبرمجة والإبداع والترفيه.",
+  "inLanguage":"ar"
+}
+</script>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">TZ</div>
+      TeenZone
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#learn">التعلم</a></li>
+      <li><a href="#code">البرمجة</a></li>
+      <li><a href="#create">الإبداع</a></li>
+      <li><a href="#games">الألعاب</a></li>
+      <li><a href="#challenges">التحديات</a></li>
+      <li><a href="#projects">المشاريع</a></li>
+      <li><a href="#safety">الأمان</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="تبديل الوضع" title="تبديل الوضع">
+        <span id="themeIcon">🌙</span>
+      </button>
+      <button class="btn-nav-account" onclick="openModal('auth')">
+        <span>👤</span> حسابي
+      </button>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="القائمة">
+        <span id="menuIcon">☰</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      مساحة آمنة للمراهقين 13–17 سنة
+    </div>
+    <h1 class="hero-title">
+      تعلّم، أبدع، واكتشف<br>
+      <span class="hero-title-highlight">مهاراتك بأمان</span>
+    </h1>
+    <p class="hero-subtitle">
+      منصّة رقمية تجمع بين التعلّم والترفيه والإبداع في بيئة آمنة وخصوصية تامّة. ابدأ رحلتك الآن!
+    </p>
+    <div class="hero-buttons">
+      <a href="#learn" class="btn-primary">🚀 ابدأ الآن</a>
+      <a href="#categories" class="btn-secondary">🧭 استكشف الموقع</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">+١٢٠</div>
+        <div class="hero-stat-label">درس تعليمي</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">+٣٠</div>
+        <div class="hero-stat-label">تحدي إبداعي</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">١٠٠٪</div>
+        <div class="hero-stat-label">آمن وخاص</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CATEGORIES ========== -->
+<section class="categories-section" id="categories">
+  <div class="section-header" style="max-width:1280px;margin:0 auto 48px;">
+    <div class="section-tag">🗂️ الأقسام الرئيسية</div>
+    <h2 class="section-title">اكتشف عالَمك</h2>
+    <p class="section-desc">ستة أقسام مصمّمة خصيصًا لتنمية مهاراتك واستكشاف اهتماماتك</p>
+  </div>
+  <div class="categories-grid">
+    <div class="category-card reveal" data-cat="learn" onclick="scrollToSection('learn')">
+      <div class="category-icon">📚</div>
+      <h3 class="category-title">التعلّم</h3>
+      <p class="category-desc">دروس وتمارين تفاعلية في مختلف المواد الدراسية</p>
+    </div>
+    <div class="category-card reveal" data-cat="code" onclick="scrollToSection('code')">
+      <div class="category-icon">💻</div>
+      <h3 class="category-title">البرمجة</h3>
+      <p class="category-desc">تعلّم HTML وCSS وJavaScript بطريقة مبسّطة</p>
+    </div>
+    <div class="category-card reveal" data-cat="create" onclick="scrollToSection('create')">
+      <div class="category-icon">🎨</div>
+      <h3 class="category-title">الإبداع</h3>
+      <p class="category-desc">أفكار ومشاريع وتصاميم لإطلاق إبداعك</p>
+    </div>
+    <div class="category-card reveal" data-cat="games" onclick="scrollToSection('games')">
+      <div class="category-icon">🎮</div>
+      <h3 class="category-title">الألعاب</h3>
+      <p class="category-desc">ألعاب تعليمية ممتعة وآمنة لجميع الأعمار</p>
+    </div>
+    <div class="category-card reveal" data-cat="challenges" onclick="scrollToSection('challenges')">
+      <div class="category-icon">🏆</div>
+      <h3 class="category-title">التحديات</h3>
+      <p class="category-desc">تحديات تعليمية وإبداعية مع نقاط وشارات</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LEARNING ========== -->
+<section class="section" id="learn">
+  <div class="section-header reveal">
+    <div class="section-tag">📚 التعلّم</div>
+    <h2 class="section-title">دروس تبني مستقبلك</h2>
+    <p class="section-desc">محتوى تعليمي غنيّ في الرياضيات والعلوم واللغات والمزيد</p>
+  </div>
+  <div class="learn-grid">
+    <div class="learn-card reveal">
+      <div class="learn-card-banner" style="background: var(--primary);"></div>
+      <div class="learn-card-body">
+        <div class="learn-card-subject">📐 رياضيات</div>
+        <h3 class="learn-card-title">أساسيات الجبر</h3>
+        <p class="learn-card-desc">تعلّم المعادلات والمتغيرات بطريقة سهلة مع تمارين تفاعلية</p>
+        <div class="learn-card-meta">
+          <span>📖 ١٢ درس</span>
+          <span>⏱️ ٤٥ دقيقة</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 65%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="learn-card reveal">
+      <div class="learn-card-banner" style="background: var(--teal);"></div>
+      <div class="learn-card-body">
+        <div class="learn-card-subject" style="background:rgba(6,182,212,0.1);color:var(--teal);">🔬 علوم</div>
+        <h3 class="learn-card-title">عالم الفيزياء</h3>
+        <p class="learn-card-desc">اكتشف قوانين الحركة والطاقة من خلال تجارب ممتعة</p>
+        <div class="learn-card-meta">
+          <span>📖 ١٠ دروس</span>
+          <span>⏱️ ٣٨ دقيقة</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 30%; background: var(--teal);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="learn-card reveal">
+      <div class="learn-card-banner" style="background: var(--accent);"></div>
+      <div class="learn-card-body">
+        <div class="learn-card-subject" style="background:rgba(249,115,22,0.1);color:var(--accent);">🌍 جغرافيا</div>
+        <h3 class="learn-card-title">استكشاف القارات</h3>
+        <p class="learn-card-desc">رحلة حول العالم لتعرّف على الثقافات والمناخات المختلفة</p>
+        <div class="learn-card-meta">
+          <span>📖 ٨ دروس</span>
+          <span>⏱️ ٣٠ دقيقة</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 85%; background: var(--accent);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="learn-card reveal">
+      <div class="learn-card-banner" style="background: var(--emerald);"></div>
+      <div class="learn-card-body">
+        <div class="learn-card-subject" style="background:rgba(16,185,129,0.1);color:var(--emerald);">🗣️ لغات</div>
+        <h3 class="learn-card-title">مهارات الكتابة</h3>
+        <p class="learn-card-desc">طوّر مهاراتك في الكتابة الإبداعية والتعبير الكتابي</p>
+        <div class="learn-card-meta">
+          <span>📖 ١٥ درس</span>
+          <span>⏱️ ٥٠ دقيقة</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 45%; background: var(--emerald);"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROGRAMMING ========== -->
+<section class="section code-section" id="code">
+  <div class="section-header reveal">
+    <div class="section-tag">💻 البرمجة</div>
+    <h2 class="section-title">تعلّم لغة المستقبل</h2>
+    <p class="section-desc">ابدأ رحلتك في عالم البرمجة مع دروس مبسّطة وتطبيقات عملية</p>
+  </div>
+  <div class="code-layout">
+    <div class="code-langs reveal">
+      <div class="code-lang-card">
+        <div class="code-lang-icon" style="background: linear-gradient(135deg, #e44d26, #f16529);">
+          <span style="font-size:0.7rem;">&lt;/&gt;</span>
+        </div>
+        <div class="code-lang-info">
+          <h4>HTML</h4>
+          <p>لغة بناء صفحات الويب — أساس كل موقع</p>
+        </div>
+      </div>
+      <div class="code-lang-card">
+        <div class="code-lang-icon" style="background: linear-gradient(135deg, #264de4, #2965f1);">
+          <span style="font-size:0.7rem;">{ }</span>
+        </div>
+        <div class="code-lang-info">
+          <h4>CSS</h4>
+          <p>تنسيق وتصميم الصفحات — اجعل موقعك جميلًا</p>
+        </div>
+      </div>
+      <div class="code-lang-card">
+        <div class="code-lang-icon" style="background: linear-gradient(135deg, #f0db4f, #e8d44d);">
+          <span style="font-size:0.7rem;color:#333;">JS</span>
+        </div>
+        <div class="code-lang-info">
+          <h4>JavaScript</h4>
+          <p>أضف التفاعل والحيوية لمواقعك</p>
+        </div>
+      </div>
+      <div class="code-lang-card">
+        <div class="code-lang-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+          <span style="font-size:0.7rem;">Py</span>
+        </div>
+        <div class="code-lang-info">
+          <h4>Python — قريبًا</h4>
+          <p>لغة برمجة متعددة الاستخدامات وقوية</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-editor reveal">
+      <div class="code-editor-header">
+        <div class="code-dot red"></div>
+        <div class="code-dot yellow"></div>
+        <div class="code-dot green"></div>
+        <div class="code-editor-tab">index.html</div>
+      </div>
+      <div class="code-editor-body">
+<span class="comment">&lt;!-- أول صفحة ويب لك! --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"ar"</span> <span class="attr">dir</span>=<span class="val">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;title&gt;</span>مرحبًا بالعالم<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;style&gt;</span>
+    <span class="keyword">body</span> {
+      <span class="attr">background</span>: <span class="val">#7c3aed</span>;
+      <span class="attr">color</span>: <span class="val">white</span>;
+      <span class="attr">font-family</span>: <span class="val">'Tajawal'</span>;
+    }
+  <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>مرحبًا! أنا مبرمج 🚀<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>أول خطوة في عالم البرمجة<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CREATIVITY ========== -->
+<section class="section" id="create">
+  <div class="section-header reveal">
+    <div class="section-tag">🎨 الإبداع</div>
+    <h2 class="section-title">أطلق العنان لإبداعك</h2>
+    <p class="section-desc">أدوات وأفكار لمساعدتك على تحويل أفكارك إلى واقع</p>
+  </div>
+  <div class="create-showcase">
+    <div class="create-card reveal">
+      <div class="create-icon-wrap" style="background: rgba(124,58,237,0.08);">🖌️</div>
+      <h3>التصميم الجرافيكي</h3>
+      <p>تعلّم أساسيات التصميم والألوان والخطوط لإنشاء تصاميم احترافية</p>
+      <button class="btn-outline">ابدأ التصميم ←</button>
+    </div>
+    <div class="create-card reveal">
+      <div class="create-icon-wrap" style="background: rgba(249,115,22,0.08);">✍️</div>
+      <h3>الكتابة الإبداعية</h3>
+      <p>اكتب قصصًا قصيرة ومقالات وعبّر عن أفكارك بأسلوب مميز</p>
+      <button class="btn-outline">ابدأ الكتابة ←</button>
+    </div>
+    <div class="create-card reveal">
+      <div class="create-icon-wrap" style="background: rgba(6,182,212,0.08);">🎬</div>
+      <h3>إنتاج المحتوى</h3>
+      <p>تعلّم صناعة محتوى مرئي ومسموع بطرق بسيطة وآمنة</p>
+      <button class="btn-outline">ابدأ الإنتاج ←</button>
+    </div>
+    <div class="create-card reveal">
+      <div class="create-icon-wrap" style="background: rgba(16,185,129,0.08);">💡</div>
+      <h3>حل المشكلات</h3>
+      <p>تدرّب على التفكير الإبداعي وإيجاد حلول مبتكرة للتحديات</p>
+      <button class="btn-outline">ابدأ التحدّي ←</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GAMES ========== -->
+<section class="section games-section" id="games">
+  <div class="section-header reveal">
+    <div class="section-tag">🎮 الألعاب</div>
+    <h2 class="section-title">تعلّم وأنت تلعب</h2>
+    <p class="section-desc">ألعاب تعليمية ممتعة تنمّي مهاراتك دون أي محتوى غير مناسب</p>
+  </div>
+  <div class="games-grid">
+    <div class="game-card reveal">
+      <div class="game-card-visual" style="background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(167,139,250,0.12));">🧩</div>
+      <div class="game-card-body">
+        <h3>ألغاز المنطق</h3>
+        <p>حل ألغاز ذكية تنمّي مهارات التفكير النقدي والمنطقي</p>
+        <div class="game-tags">
+          <span class="game-tag">تفكير</span>
+          <span class="game-tag">منطق</span>
+        </div>
+      </div>
+    </div>
+    <div class="game-card reveal">
+      <div class="game-card-visual" style="background: linear-gradient(135deg, rgba(249,115,22,0.08), rgba(253,186,116,0.12));">🔢</div>
+      <div class="game-card-body">
+        <h3>تحدي الرياضيات</h3>
+        <p>اختبر سرعتك في حل المسائل الحسابية بمستويات مختلفة</p>
+        <div class="game-tags">
+          <span class="game-tag">رياضيات</span>
+          <span class="game-tag">سرعة</span>
+        </div>
+      </div>
+    </div>
+    <div class="game-card reveal">
+      <div class="game-card-visual" style="background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(103,232,249,0.12));">🗺️</div>
+      <div class="game-card-body">
+        <h3>مغامرة المعرفة</h3>
+        <p>استكشف عوالم جديدة وتعلّم حقائق مدهشة عن العالم</p>
+        <div class="game-tags">
+          <span class="game-tag">استكشاف</span>
+          <span class="game-tag">ثقافة</span>
+        </div>
+      </div>
+    </div>
+    <div class="game-card reveal">
+      <div class="game-card-visual" style="background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(110,231,183,0.12));">📝</div>
+      <div class="game-card-body">
+        <h3>كلمات متقاطعة</h3>
+        <p>وسّع مفرداتك وحسّن مهاراتك اللغوية بطريقة ممتعة</p>
+        <div class="game-tags">
+          <span class="game-tag">لغة</span>
+          <span class="game-tag">مفردات</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CHALLENGES ========== -->
+<section class="section" id="challenges">
+  <div class="section-header reveal">
+    <div class="section-tag">🏆 التحديات</div>
+    <h2 class="section-title">تحدَّ نفسك واربح شارات</h2>
+    <p class="section-desc">أكمل التحديات التعليمية والإبداعية لجمع النقاط وكسب الشارات</p>
+  </div>
+  <div class="challenges-layout">
+    <div class="challenge-list reveal">
+      <div class="challenge-item">
+        <div class="challenge-icon" style="background: rgba(124,58,237,0.1);">🎯</div>
+        <div class="challenge-info">
+          <h4>تحدّي البرمجة الأول</h4>
+          <p>أنشئ صفحة ويب بسيطة بـ HTML و CSS</p>
+        </div>
+        <div class="challenge-points">+٥٠ نقطة</div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-icon" style="background: rgba(249,115,22,0.1);">✏️</div>
+        <div class="challenge-info">
+          <h4>قصة قصيرة</h4>
+          <p>اكتب قصة من ٣٠٠ كلمة عن مغامرة خيالية</p>
+        </div>
+        <div class="challenge-points">+٣٠ نقطة</div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-icon" style="background: rgba(6,182,212,0.1);">🧪</div>
+        <div class="challenge-info">
+          <h4>عالم صغير</h4>
+          <p>أنشئ تجربة علمية بسيطة ووثّق نتائجها</p>
+        </div>
+        <div class="challenge-points">+٤٠ نقطة</div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-icon" style="background: rgba(16,185,129,0.1);">🌱</div>
+        <div class="challenge-info">
+          <h4>مشروع بيئي</h4>
+          <p>اقترح فكرة لحماية البيئة في مدرستك</p>
+        </div>
+        <div class="challenge-points">+٣٥ نقطة</div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-icon" style="background: rgba(244,63,94,0.1);">📊</div>
+        <div class="challenge-info">
+          <h4>تحدي البيانات</h4>
+          <p>اجمع بيانات وأنشئ رسمًا بيانيًا مثيرًا</p>
+        </div>
+        <div class="challenge-points">+٤٥ نقطة</div>
+      </div>
+    </div>
+
+    <div class="badges-panel reveal">
+      <h3>🏅 مجموعتك من الشارات</h3>
+      <p>أكمل التحديات لكسب شارات جديدة</p>
+      <div class="badges-grid">
+        <div class="badge-item">
+          <span class="badge-icon">🌟</span>
+          <div class="badge-name">المبتدئ</div>
+        </div>
+        <div class="badge-item">
+          <span class="badge-icon">💻</span>
+          <div class="badge-name">مبرمج</div>
+        </div>
+        <div class="badge-item">
+          <span class="badge-icon">📚</span>
+          <div class="badge-name">قارئ</div>
+        </div>
+        <div class="badge-item">
+          <span class="badge-icon">🎨</span>
+          <div class="badge-name">مبدع</div>
+        </div>
+        <div class="badge-item locked">
+          <span class="badge-icon">🏆</span>
+          <div class="badge-name">بطل</div>
+        </div>
+        <div class="badge-item locked">
+          <span class="badge-icon">🚀</span>
+          <div class="badge-name">رائد</div>
+        </div>
+        <div class="badge-item locked">
+          <span class="badge-icon">🔬</span>
+          <div class="badge-name">عالِم</div>
+        </div>
+        <div class="badge-item locked">
+          <span class="badge-icon">✍️</span>
+          <div class="badge-name">كاتب</div>
+        </div>
+        <div class="badge-item locked">
+          <span class="badge-icon">🌍</span>
+          <div class="badge-name">مستكشف</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROJECTS ========== -->
+<section class="section projects-section" id="projects">
+  <div class="section-header reveal">
+    <div class="section-tag">📂 المشاريع</div>
+    <h2 class="section-title">اعرض مشاريعك</h2>
+    <p class="section-desc">شارك إبداعاتك مع المجتمع دون كشف أي معلومات شخصية</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-preview" style="background: linear-gradient(135deg, #7c3aed, #a78bfa);">
+        🌐 موقعي الأول
+      </div>
+      <div class="project-body">
+        <h3>موقع شخصي بسيط</h3>
+        <p>صفحة ويب أنشأتها باستخدام HTML و CSS مع تصميم مخصص</p>
+        <div class="project-footer">
+          <div class="project-author">
+            <div class="project-avatar" style="background: linear-gradient(135deg, #7c3aed, #f97316);">ن</div>
+            <span>نجم_الكود</span>
+          </div>
+          <div class="project-likes" onclick="toggleLike(this)">♡ ٢٤</div>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-preview" style="background: linear-gradient(135deg, #f97316, #fdba74);">
+        🎮 لعبة الذاكرة
+      </div>
+      <div class="project-body">
+        <h3>لعبة تذكّر البطاقات</h3>
+        <p>لعبة JavaScript بسيطة تختبر ذاكرتك مع مستويات متعددة</p>
+        <div class="project-footer">
+          <div class="project-author">
+            <div class="project-avatar" style="background: linear-gradient(135deg, #06b6d4, #10b981);">م</div>
+            <span>مبدع_التقنية</span>
+          </div>
+          <div class="project-likes" onclick="toggleLike(this)">♡ ١٨</div>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-preview" style="background: linear-gradient(135deg, #10b981, #6ee7b7);">
+        📖 قصتي القصيرة
+      </div>
+      <div class="project-body">
+        <h3>مغامرة في الفضاء</h3>
+        <p>قصة قصيرة عن رحلة استكشاف كواكب جديدة والحياة عليها</p>
+        <div class="project-footer">
+          <div class="project-author">
+            <div class="project-avatar" style="background: linear-gradient(135deg, #f43f5e, #f97316);">ك</div>
+            <span>كاتب_الأحلام</span>
+          </div>
+          <div class="project-likes" onclick="toggleLike(this)">♡ ٣١</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SAFETY ========== -->
+<section class="section" id="safety">
+  <div class="section-header reveal">
+    <div class="section-tag">🛡️ الأمان والخصوصية</div>
+    <h2 class="section-title">سلامتك أولويتنا</h2>
+    <p class="section-desc">صمّمنا TeenZone ليكون مكانًا آمنًا بالكامل مع حماية كاملة لخصوصيتك</p>
+  </div>
+  <div class="safety-grid">
+    <div class="safety-card reveal">
+      <div class="safety-icon">🔒</div>
+      <div>
+        <h4>بدون معلومات شخصية</h4>
+        <p>لا نطلب اسمك الحقيقي أو عنوانك أو رقم هاتفك — فقط اسم مستعار</p>
+      </div>
+    </div>
+    <div class="safety-card reveal">
+      <div class="safety-icon">🚫</div>
+      <div>
+        <h4>لا محادثات مع مجهولين</h4>
+        <p>لا توجد محادثات خاصة مع أشخاص لا تعرفهم — لا مجال للمخاطر</p>
+      </div>
+    </div>
+    <div class="safety-card reveal">
+      <div class="safety-icon">🛑</div>
+      <div>
+        <h4>محتوى مُراقب</h4>
+        <p>نمنع أي محتوى عنيف أو غير لائق — بيئة نظيفة ١٠٠٪</p>
+      </div>
+    </div>
+    <div class="safety-card reveal">
+      <div class="safety-icon">📍</div>
+      <div>
+        <h4>لا مشاركة موقعك</h4>
+        <p>لا نطلب أو نسمح بمشاركة موقعك الجغرافي أو صورك الشخصية</p>
+      </div>
+    </div>
+    <div class="safety-card reveal">
+      <div class="safety-icon">📢</div>
+      <div>
+        <h4>بدون إعلانات خارجية</h4>
+        <p>لا نعرض إعلانات أو روابط لمحتوى غير مناسب لعمرك</p>
+      </div>
+    </div>
+    <div class="safety-card reveal">
+      <div class="safety-icon">⚙️</div>
+      <div>
+        <h4>خصوصية واضحة</h4>
+        <p>إعدادات خصوصية بسيطة وواضحة يمكنك التحكم بها بسهولة</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-section reveal">
+    <h3>🚨 رأيت شيئًا غير مناسب؟</h3>
+    <p>إذا صادفت أي محتوى تعتقد أنه غير مناسب، لا تتردد في الإبلاغ فورًا</p>
+    <button class="btn-report" onclick="showToast('✅', 'شكرًا لك! سنراجع البلاغ فورًا.')">
+      ⚠️ إبلاغ عن محتوى
+    </button>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:4px;">
+        <div class="nav-logo-icon">TZ</div>
+        TeenZone
+      </div>
+      <p>مساحة رقمية آمنة ومفيدة للمراهقين تجمع بين التعلّم والترفيه والإبداع.</p>
+    </div>
+    <div class="footer-col">
+      <h4>الأقسام</h4>
+      <ul>
+        <li><a href="#learn">التعلّم</a></li>
+        <li><a href="#code">البرمجة</a></li>
+        <li><a href="#create">الإبداع</a></li>
+        <li><a href="#games">الألعاب</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>المزيد</h4>
+      <ul>
+        <li><a href="#challenges">التحديات</a></li>
+        <li><a href="#projects">المشاريع</a></li>
+        <li><a href="#safety">الأمان</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>قانوني</h4>
+      <ul>
+        <li><a href="#" onclick="openModal('privacy');return false;">سياسة الخصوصية</a></li>
+        <li><a href="#">شروط الاستخدام</a></li>
+        <li><a href="#">تواصل معنا</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© ٢٠٢٥ TeenZone — جميع الحقوق محفوظة</span>
+    <span>صُنع بـ 💜 للمراهقين العرب</span>
+  </div>
+</footer>
+
+<!-- ========== AUTH MODAL ========== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="authTitle">تسجيل الدخول</h2>
+      <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+    </div>
+    <div class="modal-body" id="authBody">
+      <!-- Auth form (default) -->
+      <div id="authForm">
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchAuthTab('login', this)">تسجيل الدخول</button>
+          <button class="auth-tab" onclick="switchAuthTab('register', this)">حساب جديد</button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">اسم المستخدم</label>
+          <input type="text" class="form-input" placeholder="اختر اسمًا مستعارًا..." id="usernameInput">
+          <div class="form-hint">🔒 لا تستخدم اسمك الحقيقي — اختر اسمًا مستعارًا فقط</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">كلمة المرور</label>
+          <input type="password" class="form-input" placeholder="••••••••" id="passwordInput">
+          <div class="form-hint">🛡️ لا تشارك كلمة مرورك مع أي شخص أبدًا</div>
+        </div>
+
+        <button class="btn-submit" onclick="handleAuth()" id="authBtn">تسجيل الدخول</button>
+
+        <div class="form-hint" style="text-align:center;margin-top:16px;">
+          🔐 بياناتك محمية ولا نطلب أي معلومات شخصية
+        </div>
+      </div>
+
+      <!-- Profile view (after login) -->
+      <div id="profileView" style="display:none;">
+        <div class="profile-header">
+          <div class="profile-avatar" id="profileAvatarIcon">🦊</div>
+          <div class="profile-name" id="profileName">—</div>
+          <div class="profile-joined">انضم في يناير ٢٠٢٥</div>
+        </div>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat-value" id="profilePoints">١٥٥</div>
+            <div class="profile-stat-label">نقطة</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value" id="profileBadges">٤</div>
+            <div class="profile-stat-label">شارة</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value" id="profileProjects">٢</div>
+            <div class="profile-stat-label">مشروع</div>
+          </div>
+        </div>
+        <div class="profile-badges">
+          <h4>🏅 الشارات المكتسبة</h4>
+          <div class="profile-badges-list">
+            <div class="profile-badge"><span class="profile-badge-icon">🌟</span> المبتدئ</div>
+            <div class="profile-badge"><span class="profile-badge-icon">💻</span> مبرمج</div>
+            <div class="profile-badge"><span class="profile-badge-icon">📚</span> قارئ</div>
+            <div class="profile-badge"><span class="profile-badge-icon">🎨</span> مبدع</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:28px;">
+          <button class="btn-outline" style="flex:1;padding:12px;border:1.5px solid var(--border-strong);border-radius:12px;font-weight:600;color:var(--text-primary);background:var(--bg-tertiary);" onclick="openModal('privacy');closeModal('authModal')">⚙️ الخصوصية</button>
+          <button class="btn-outline" style="flex:1;padding:12px;border:1.5px solid rgba(244,63,94,0.3);border-radius:12px;font-weight:600;color:var(--rose);background:rgba(244,63,94,0.05);" onclick="handleLogout()">🚪 خروج</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PRIVACY MODAL ========== -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>⚙️ إعدادات الخصوصية</h2>
+      <button class="modal-close" onclick="closeModal('privacyModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:24px;line-height:1.7;">
+        تحكّم في إعدادات خصوصيتك. نحن نحترم خياراتك ولا نشارك بياناتك مع أي طرف ثالث.
+      </p>
+      <div class="privacy-list">
+        <div class="privacy-item">
+          <div class="privacy-item-info">
+            <h4>إظهار ملفي الشخصي</h4>
+            <p>السماح للمستخدمين الآخرين برؤية إنجازاتك</p>
+          </div>
+          <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+        </div>
+        <div class="privacy-item">
+          <div class="privacy-item-info">
+            <h4>إظهار نقاطي</h4>
+            <p>عرض نقاطك في لوحة المتصدرين</p>
+          </div>
+          <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+        </div>
+        <div class="privacy-item">
+          <div class="privacy-item-info">
+            <h4>تلّي إشعارات التحديات</h4>
+            <p>إعلامك عند توفر تحديات جديدة</p>
+          </div>
+          <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+        </div>
+        <div class="privacy-item">
+          <div class="privacy-item-info">
+            <h4>السماح بالتعليقات</h4>
+            <p>السماح للآخرين بالتعليق على مشاريعك</p>
+          </div>
+          <div class="toggle-switch" onclick="this.classList.toggle('active')"></div>
+        </div>
+        <div class="privacy-item">
+          <div class="privacy-item-info">
+            <h4>مشاركة النشاط</h4>
+            <p>عرض نشاطك التعليمي للآخرين</p>
+          </div>
+          <div class="toggle-switch" onclick="this.classList.toggle('active')"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">✅</span>
+  <span id="toastMessage">تم بنجاح!</span>
+</div>
+
+<script>
+/* ============================================
+   THEME TOGGLE
+   ============================================ */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('tz-theme', isDark ? 'light' : 'dark');
+}
+
+// Load saved theme
+(function() {
+  const saved = localStorage.getItem('tz-theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('themeIcon').textContent = '☀️';
+  }
+})();
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+function toggleMobileMenu() {
+  const links = document.getElementById('navLinks');
+  const icon = document.getElementById('menuIcon');
+  links.classList.toggle('open');
+  icon.textContent = links.classList.contains('open') ? '✕' : '☰';
+}
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('menuIcon').textContent = '☰';
+  });
+});
+
+/* ============================================
+   SMOOTH SCROLL
+   ============================================ */
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ============================================
+   MODALS
+   ============================================ */
+function openModal(type) {
+  if (type === 'auth') {
+    document.getElementById('authModal').classList.add('active');
+  } else if (type === 'privacy') {
+    document.getElementById('privacyModal').classList.add('active');
+  }
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.classList.remove('active');
+  });
+});
+
+/* ============================================
+   AUTH SYSTEM (Demo)
+   ============================================ */
+let isLoggedIn = false;
+let currentUser = null;
+
+const avatars = ['🦊', '🐼', '🦁', '🐺', '🦅', '🐬', '🦋', '🌟'];
+
+function switchAuthTab(tab, btn) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const authBtn = document.getElementById('authBtn');
+  authBtn.textContent = tab === 'login' ? 'تسجيل الدخول' : 'إنشاء حساب';
+}
+
+function handleAuth() {
+  const username = document.getElementById('usernameInput').value.trim();
+  const password = document.getElementById('passwordInput').value.trim();
+
+  if (!username) {
+    showToast('⚠️', 'الرجاء إدخال اسم المستخدم');
+    return;
+  }
+  if (username.length < 3) {
+    showToast('⚠️', 'اسم المستخدم يجب أن يكون ٣ أحرف على الأقل');
+    return;
+  }
+  if (!password || password.length < 6) {
+    showToast('⚠️', 'كلمة المرور يجب أن تكون ٦ أحرف على الأقل');
+    return;
+  }
+
+  // Safety check: warn if username looks like a real name
+  if (/^\s*[\u0600-\u06FF]+\s+[\u0600-\u06FF]+\s*$/.test(username)) {
+    showToast('⚠️', 'يُفضّل استخدام اسم مستعار بدلاً من اسمك الحقيقي');
+    return;
+  }
+
+  isLoggedIn = true;
+  currentUser = {
+    name: username,
+    avatar: avatars[Math.floor(Math.random() * avatars.length)],
+    points: 155,
+    badges: 4
+  };
+
+  showProfile();
+  showToast('🎉', 'مرحبًا ' + username + '!');
+}
+
+function showProfile() {
+  document.getElementById('authForm').style.display = 'none';
+  document.getElementById('profileView').style.display = 'block';
+  document.getElementById('authTitle').textContent = 'ملفي الشخصي';
+  document.getElementById('profileAvatarIcon').textContent = currentUser.avatar;
+  document.getElementById('profileName').textContent = currentUser.name;
+  document.getElementById('profilePoints').textContent = currentUser.points;
+  document.getElementById('profileBadges').textContent = currentUser.badges;
+}
+
+function handleLogout() {
+  isLoggedIn = false;
+  currentUser = null;
+  document.getElementById('authForm').style.display = 'block';
+  document.getElementById('profileView').style.display = 'none';
+  document.getElementById('authTitle').textContent = 'تسجيل الدخول';
+  document.getElementById('usernameInput').value = '';
+  document.getElementById('passwordInput').value = '';
+  closeModal('authModal');
+  showToast('👋', 'تم تسجيل الخروج بنجاح');
+}
+
+/* ============================================
+   LIKES
+   ============================================ */
+function toggleLike(el) {
+  if (el.classList.contains('liked')) {
+    el.classList.remove('liked');
+    el.style.color = '';
+    el.style.background = '';
+  } else {
+    el.classList.add('liked');
+    el.style.color = 'var(--rose)';
+    el.style.background = 'rgba(244,63,94,0.08)';
+    showToast('💜', 'تم الإعجاب بالمشروع!');
+  }
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+function showToast(icon, message) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastMessage').textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ============================================
+   NAVBAR SCROLL EFFECT
+   ============================================ */
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > 100) {
+    nav.style.boxShadow = 'var(--shadow-md)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+  lastScroll = currentScroll;
+});
+
+/* ============================================
+   KEYBOARD: Escape to close modals
+   ============================================ */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+  }
+});
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"a9ffd0acd2974817b4c2b30148231e3b"}' crossorigin="anonymous"></script>
+</body>
+</html>
